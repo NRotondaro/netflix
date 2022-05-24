@@ -23,6 +23,7 @@ This project is made using:
 - [TailwindCSS](https://tailwindcss.com/)
 - [HeroIcons](https://heroicons.com/)
 - [Firebase V9](https://firebase.google.com/)
+- [Recoil](https://recoiljs.org/)
 
 ## 💻 About
 
