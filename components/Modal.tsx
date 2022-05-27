@@ -35,6 +35,16 @@ function Modal() {
   const [addedToList, setAddedToList] = useState(false)
   const [movies, setMovies] = useState<DocumentData[] | Movie[]>()
 
+  const toastStyle = {
+    background: 'white',
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: '16px',
+    padding: '15px',
+    borderRadius: '9999px',
+    maxWidth: '1000px',
+  }
+
   useEffect(() => {
     if (!movie) return
 
@@ -91,6 +101,7 @@ function Modal() {
         `${movie?.title || movie?.original_name} has been removed from My List`,
         {
           duration: 8000,
+          style: toastStyle,
         }
       )
     } else {
@@ -105,6 +116,7 @@ function Modal() {
         `${movie?.title || movie?.original_name} has been added to My List`,
         {
           duration: 8000,
+          style: toastStyle,
         }
       )
     }
