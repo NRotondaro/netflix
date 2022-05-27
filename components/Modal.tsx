@@ -7,7 +7,14 @@ import {
   VolumeUpIcon,
 } from '@heroicons/react/solid'
 import MuiModal from '@mui/material/Modal'
-import { deleteDoc, doc, setDoc } from 'firebase/firestore'
+import {
+  collection,
+  deleteDoc,
+  doc,
+  DocumentData,
+  onSnapshot,
+  setDoc,
+} from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { FaPlay } from 'react-icons/fa'
@@ -16,7 +23,7 @@ import { useRecoilState } from 'recoil'
 import { modalState, movieState } from '../atoms/modalAtom'
 import { db } from '../firebase'
 import useAuth from '../hooks/useAuth'
-import { Element, Genre } from '../typings'
+import { Element, Genre, Movie } from '../typings'
 
 function Modal() {
   const [showModal, setShowModal] = useRecoilState(modalState)
@@ -26,6 +33,7 @@ function Modal() {
   const [muted, setMuted] = useState(true)
   const { user } = useAuth()
   const [addedToList, setAddedToList] = useState(false)
+  const [movies, setMovies] = useState<DocumentData[] | Movie[]>()
 
   useEffect(() => {
     if (!movie) return
@@ -55,6 +63,23 @@ function Modal() {
 
     fetchMovie()
   }, [movie])
+
+  useEffect(() => {
+    if (user) {
+      return onSnapshot(
+        collection(db, 'customers', user.uid, 'myList'),
+        (snapshot) => {
+          setMovies(snapshot.docs)
+        }
+      )
+    }
+  }, [db, movie?.id])
+
+  useEffect(() => {
+    setAddedToList(
+      movies?.findIndex((result) => result.data().id === movie?.id) !== -1
+    )
+  }, [movies])
 
   const handleList = async () => {
     if (addedToList) {
