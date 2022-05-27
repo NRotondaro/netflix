@@ -55,8 +55,8 @@ function Account({ products }: Props) {
         <Membership />
 
         <div className="mt-6 grid grid-cols-1 gap-x-4 border p-4 md:grid-cols-4 md:border-x-0 md:border-t md:border-b-0 md:px-0 md:pb-0">
-          <h3>Plan Details</h3>
-          <div className="col">
+          <h3 className="text-lg text-[gray]">Plan Details</h3>
+          <div className="col-span-2 font-medium">
             {
               products.filter(
                 (product) => product.id === subscription?.product

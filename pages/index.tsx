@@ -36,7 +36,7 @@ const Home = ({
   trendingNow,
   products,
 }: Props) => {
-  const { logout, loading, user } = useAuth()
+  const { loading, user } = useAuth()
   const showModal = useRecoilValue(modalState)
   const subscription = useSubscription(user)
 
