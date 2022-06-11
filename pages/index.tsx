@@ -1,4 +1,5 @@
 import { getProducts, Product } from '@stripe/firestore-stripe-payments'
+import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import { useRecoilValue } from 'recoil'
 import { modalState, movieState } from '../atoms/modalAtom'
@@ -76,7 +77,7 @@ const Home = ({
 
 export default Home
 
-export const getServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const products = await getProducts(payments, {
     includePrices: true,
     activeOnly: true,
