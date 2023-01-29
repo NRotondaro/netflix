@@ -1,40 +1,38 @@
-import { Button, Menu, MenuItem } from '@mui/material'
-import { useState } from 'react'
+import { Button, Menu, MenuItem } from '@mui/material';
+import { useState } from 'react';
 
 function BasicMenu() {
-  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
-  const open = Boolean(anchorEl)
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const open = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
 
   const handleClose = () => {
-    setAnchorEl(null)
-  }
+    setAnchorEl(null);
+  };
 
   return (
-    <div className="md:!hidden">
+    <div className='md:!hidden'>
       <Button
-        id="basic-button"
+        id='basic-button'
         aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
+        aria-haspopup='true'
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-        className="!capitalize !text-white"
-      >
+        className='!capitalize !text-white'>
         Browse
       </Button>
       <Menu
-        id="basic-menu"
+        id='basic-menu'
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        className="menu"
+        className='menu'
         MenuListProps={{
           'aria-labelledby': 'basic-button',
-        }}
-      >
+        }}>
         <MenuItem onClick={handleClose}>Home</MenuItem>
         <MenuItem onClick={handleClose}>TV Shows</MenuItem>
         <MenuItem onClick={handleClose}>Movies</MenuItem>
@@ -42,7 +40,7 @@ function BasicMenu() {
         <MenuItem onClick={handleClose}>My List</MenuItem>
       </Menu>
     </div>
-  )
+  );
 }
 
-export default BasicMenu
+export default BasicMenu;
