@@ -3,7 +3,7 @@ import useAuth from '../hooks/useAuth';
 import useSubscription from '../hooks/useSubscription';
 import { goToBillingPortal } from '../lib/stripe';
 import Loader from './Loader';
-
+// Comment
 function Membership() {
   const { user } = useAuth();
   const subscription = useSubscription(user);
